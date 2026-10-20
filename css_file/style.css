@@ -1,0 +1,778 @@
+/* Foundation and the Layout Through Section 1,2,3*/
+/* 1. GLOBAL STYLES */
+:root {
+  --background: #f7f5f0;
+  --white: #fff;
+  --text: #252821;
+  --muted: #686b63;
+  --accent: #985a3e;
+  --border: #e6ded5;
+  --dark: #302e29;
+  --brown: #633b2c;
+  --panel: #f8f5f1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* 2. HEADER */
+.site-header {
+  padding: 85px 30px 90px;
+  background: var(--dark);
+  color: var(--white);
+  text-align: center;
+}
+
+.header-content { max-width: 950px; margin: 0 auto; }
+
+.eyebrow {
+  margin-bottom: 20px;
+  color: #d8b59e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.site-header h1 {
+  margin-bottom: 20px;
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: -1.5px;
+}
+
+.header-description {
+  max-width: 650px;
+  margin: 0 auto;
+  color: #dedbd4;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* 3. MAIN PAGE LAYOUT AND SECTION HEADINGS */
+.page-content {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.intro-section,
+.story-section,
+.conclusion-section {
+  width: min(1200px, calc(100% - 80px));
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.intro-section { padding: 64px 0 72px; }
+.story-section { padding: 48px 0 64px; }
+.conclusion-section { padding: 48px 0; }
+
+.section-number {
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.intro-section > .section-number { margin-bottom: 16px; }
+
+.intro-section > h2 {
+  margin: 0 0 18px;
+  color: #292b25;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+}
+
+.intro-section h2,
+.story-section h2,
+.conclusion-section h2 {
+  margin-bottom: 20px;
+  font-size: clamp(27px, 3vw, 38px);
+  letter-spacing: -.6px;
+}
+
+.section-heading {
+  width: 100%;
+  margin: 0 0 32px;
+}
+
+.section-heading .section-number { margin: 0 0 14px; }
+
+.section-heading h2 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1.2;
+}
+
+.description {
+  max-width: 950px;
+  margin-bottom: 30px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.intro-section > .description,
+.section-heading .description {
+  max-width: 850px;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.section-label-row {
+  display: flex;
+  width: min(92%, 1400px);
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.section-label-row .section-number { margin: 0; }
+
+
+
+
+
+
+
+
+
+
+
+
+/* 4. INTRODUCTION SEGMENTS AND DATA DISCLAIMER */
+.introduction-segments {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 42px;
+}
+
+.intro-segment {
+  padding-top: 20px;
+  border-top: 2px solid #b76a47;
+}
+
+.segment-number {
+  display: block;
+  margin-bottom: 14px;
+  color: #a45435;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.intro-segment h3 {
+  margin: 0 0 12px;
+  color: #292b25;
+  font-size: 23px;
+  line-height: 1.3;
+}
+
+.intro-segment p {
+  margin: 0;
+  color: #55564f;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.collection-disclaimer {
+  margin-top: 42px;
+  padding: 20px 24px;
+  border-top: 1px solid #dcd4c9;
+  background: #f0ece5;
+}
+
+.collection-disclaimer p {
+  margin: 0;
+  color: #55564f;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.collection-disclaimer p:first-child {
+  margin-bottom: 6px;
+  color: #292b25;
+}
+
+/* 5. SHARED CHART CARDS */
+.chart-card {
+  width: 100%;
+  margin: 24px 0 0;
+  padding: 28px;
+  box-sizing: border-box;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(35, 30, 25, .035);
+}
+
+.chart-card h3 {
+  margin-bottom: 10px;
+  font-size: 19px;
+}
+
+.panel-description {
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.story-section .chart-card { margin-top: 24px; }
+
+.story-section .chart-card,
+.conclusion-section .chart-card {
+  max-width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 6. HEATMAP AND ARTWORK DETAILS PANEL */
+#heatmap-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+#heatmap-section .chart-card {
+  max-width: 1150px;
+  margin: 28px auto 0;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e5ddd2;
+  border-radius: 14px;
+}
+
+.heatmap-layout,
+#heatmap-section .heatmap-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(260px, .9fr);
+  gap: 28px;
+  align-items: start;
+  width: 100%;
+}
+
+.heatmap-chart {
+  min-width: 0;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.heatmap-chart h3 { margin: 0 0 10px; }
+
+.heatmap-chart .panel-description {
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#heatmap,
+#heatmap-section #heatmap {
+  width: 100%;
+  min-width: 0;
+}
+
+#heatmap-section #heatmap { min-height: 350px; }
+
+#heatmap .vega-embed,
+#heatmap .vega-embed > div {
+  width: 100%;
+  min-width: 0;
+}
+
+#heatmap svg,
+#heatmap-section #heatmap .vega-embed,
+#heatmap-section #heatmap svg {
+  display: block;
+  max-width: 100%;
+}
+
+#heatmap svg { height: auto; }
+
+.heatmap-details,
+#heatmap-section .heatmap-details {
+  width: 100%;
+  min-width: 0;
+  padding: 24px;
+  background: var(--panel);
+  border: 1px solid #e5ddd2;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.heatmap-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 12px;
+}
+
+.details-heading {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ded5cb;
+}
+
+.details-label {
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+#detail-heading {
+  margin-bottom: 10px;
+  font-size: 22px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.details-hint {
+  color: #77716b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #ded5cb;
+}
+
+.detail-item span,
+.detail-count span {
+  color: #77716b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.detail-item strong {
+  color: #29251f;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.detail-count {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+#detail-count {
+  color: var(--brown);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.count-caption {
+  color: #77716b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.heatmap-legend {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #ded5cb;
+}
+
+.legend-title {
+  display: block;
+  margin-bottom: 14px;
+  color: #77716b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.legend-gradient {
+  width: 100%;
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    #f4e8df,
+    #e4c4ad,
+    #c58c69,
+    #985a3e,
+    #633b2c
+  );
+}
+
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 8px;
+  color: #77716b;
+  font-size: 11px;
+}
+
+.legend-note {
+  margin-top: 12px;
+  color: #77716b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* 7. TIMELINE AND MAPS */
+#timeline-chart,
+#australia-map {
+  width: 100%;
+  min-height: 300px;
+  padding: 20px 0;
+}
+
+#timeline-chart > p,
+#australia-map > p {
+  color: #888780;
+  font-size: 14px;
+  font-style: italic;
+}
+
+#choropleth_map {
+  width: 100%;
+  max-width: 900px;
+  min-height: 480px;
+  margin: 20px auto;
+  overflow-x: auto;
+}
+
+#choropleth_map .vega-embed { width: 100%; }
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.map-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-legend i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.public-art-controls {
+  width: 190px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .3);
+  font-size: 12px;
+}
+
+.public-art-controls label {
+  display: block;
+  margin: 5px 0;
+}
+
+.public-art-controls select,
+.public-art-controls input,
+.public-art-controls button {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+.public-art-controls button { cursor: pointer; }
+.art-popup { line-height: 1.7; }
+
+/* 8. ACQUISITION STREAMGRAPH AND CONTROLS */
+#streamgraph {
+  width: 100%;
+  min-width: 0;
+  min-height: 400px;
+  padding: 10px 0;
+}
+
+#streamgraph .vega-embed,
+#streamgraph .vega-embed > div {
+  width: 100%;
+  max-width: 100%;
+}
+
+#streamgraph svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.streamgraph-controls { margin: 20px 0; }
+
+.control-label {
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.department-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.department-btn {
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--dark);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease,
+    border-color 180ms ease, transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.department-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(48, 46, 41, .1);
+}
+
+.department-btn:focus-visible {
+  outline: 3px solid #c58c69;
+  outline-offset: 3px;
+}
+
+.department-btn.active {
+  background: var(--dark);
+  color: #fff;
+  border-color: var(--dark);
+  box-shadow: 0 3px 10px rgba(48, 46, 41, .15);
+}
+
+#streamgraph-selection {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* 9. PUBLIC ART WAFFLE CHART AND SUMMARY */
+.waffle-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.waffle-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.waffle-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+
+.public-art-summary-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr);
+  gap: 32px;
+  align-items: center;
+  width: 100%;
+}
+
+.public-art-waffle {
+  width: 100%;
+  min-width: 0;
+}
+
+.public-art-waffle #publicArtWaffleChart { width: 100%; }
+
+.public-art-summary {
+  padding: 28px;
+  background: var(--panel);
+  border: 1px solid #e6dbcf;
+  border-radius: 12px;
+}
+
+.summary-eyebrow {
+  margin: 0 0 12px;
+  color: #a65332;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.public-art-summary h3 {
+  margin: 0 0 10px;
+  font-size: 23px;
+  line-height: 1.3;
+}
+
+.summary-description {
+  margin-bottom: 24px;
+  color: #66645e;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.summary-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid #e6dbcf;
+}
+
+.summary-dot {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  margin-top: 5px;
+  border-radius: 3px;
+}
+
+.art-dot { background: #3777c8; }
+.monument-dot { background: #e88bb5; }
+.fountain-dot { background: #e3a43b; }
+
+.summary-label {
+  margin: 0 0 3px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.summary-value {
+  margin: 0;
+  color: #292923;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.summary-count {
+  margin: 3px 0 0;
+  color: #77736c;
+  font-size: 12px;
+}
+
+.summary-insight {
+  margin: 20px 0 0;
+  padding: 15px;
+  border-left: 3px solid #a65332;
+  background: #fff;
+  color: #55534d;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 10. SIDE-BY-SIDE CHARTS */
+.side-by-side {
+  display: grid;
+  width: min(92%, 1400px);
+  max-width: 1400px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  margin: 0 auto 80px;
+}
+
+.side-by-side > .story-section {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+}
+
+.side-by-side .chart-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* 11. CONCLUSION AND FOOTER */
+.source-note {
+  margin-top: 25px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.site-footer {
+  padding: 35px 20px;
+  background: var(--dark);
+  color: #d8d5ce;
+  text-align: center;
+  font-size: 13px;
+}

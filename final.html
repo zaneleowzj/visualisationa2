@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Australian Art Collection</title>
+        
+    <!-- Importing Vega-lite Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+    
+    <!-- Importing Leaflet Mapstyle -->
+     <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Opening the style css-->
+    <link rel="stylesheet" href="../css_file/style.css">
+</head>
+<body>
+
+    <!-- Starting the first part of the page segregation -->
+     <header class="site-header">
+        <div class="header-content">
+            <p class="eyebrow">A Journey Through Collection , Culture & Places </p>
+            <h1>Exploring Australian Art </h1>
+            <p class="header-description">
+            </p>
+                </div>
+    </header>
+
+<!-- INTRODUCTION -->
+<section class="intro-section">
+
+    <p class="section-number">INTRODUCTION</p>
+
+    <h2>Every artwork tells a story.</h2>
+
+    <p class="description">
+        Through art collections, we can uncover patterns in geography,
+        history, artistic forms and representation. Beginning with
+        QAGOMA, this investigation explores what collection records
+        reveal about Australian art — before turning our attention
+        to the art that surrounds us in Melbourne.
+    </p>
+
+    <!-- FOUR STORY QUESTIONS -->
+    <div class="introduction-segments">
+
+        <div class="intro-segment">
+            <span class="segment-number">01 / WHERE?</span>
+            <h3>Where does art come from?</h3>
+            <p>
+                Explore the geographical distribution of artwork
+                records across Australian states and territories.
+            </p>
+        </div>
+
+        <div class="intro-segment">
+            <span class="segment-number">02 / WHEN?</span>
+            <h3>When does art evolve?</h3>
+            <p>
+                Trace acquisitions and examine how artistic forms
+                change over time.
+            </p>
+        </div>
+
+        <div class="intro-segment">
+            <span class="segment-number">03 / HOW?</span>
+            <h3>How is art represented?</h3>
+            <p>
+                Investigate artwork categories and patterns
+                within the available collection records.
+            </p>
+        </div>
+
+        <div class="intro-segment">
+            <span class="segment-number">04 / WHO?</span>
+            <h3>Who tells its stories?</h3>
+            <p>
+                Examine creator backgrounds and artist
+                representation within the collection.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- QAGOMA DATA DISCLAIMER -->
+    <div class="collection-disclaimer">
+        <p><strong>About the data</strong></p>
+        <p>
+            The first part of this project examines records from
+            the Queensland Art Gallery | Gallery of Modern Art
+            (QAGOMA). Findings reflect the available dataset and
+            should not be interpreted as a complete representation
+            of all Australian art.
+        </p>
+    </div>
+
+</section>
+
+<!-- ACT I: THE COLLECTION -->
+<section class="story-section" id="act-one">
+
+    <div class="section-heading">
+        <p class="section-number">ACT I / THE COLLECTION</p>
+        <h2>Inside QAGOMA, Queensland Art Collection</h2>
+        <p class="description">
+            What can a major art collection tell us about Australian art?
+            Explore its geography, history, artistic forms and representation.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- ===================================== -->
+<!-- 01: WHERE — HEATMAP                   -->
+<!-- ===================================== -->
+
+<section class="story-section" id="heatmap-section">
+    <p class="section-number">01 / WHERE?</p>
+
+    <h2>Artwork Records Across States and Art Departments</h2>
+
+    <p class="description">
+        This idiom compares mapped artwork records across Australian states and territories, broken down by Australian Art, Contemporary Australian Art and Indigenous Australian Art. 
+    </p>
+
+    <div class="chart-card">
+        <h3>Hover over a cell to inspect its details.</h3>
+
+        <div class="heatmap-layout">
+            <div id="heatmap">
+                <p>Loading heatmap...</p>
+            </div>
+
+            <aside class="heatmap-details">
+                <p class="details-label">ARTWORK DETAILS</p>
+
+                <h3 id="detail-heading">Explore the collection</h3>
+
+                <p>State / territory</p>
+                <strong id="detail-state">—</strong>
+
+                <p>Art department</p>
+                <strong id="detail-department">—</strong>
+
+                <p>Mapped artwork records</p>
+                <strong id="detail-count">—</strong>
+            </aside>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- 02: WHERE — Chloropleth MAP            -->
+
+
+<section class="story-section" id="choropleth-section">
+    <p class="section-number">02 / WHERE?</p>
+
+    <h2>Where are most of QAGOMA Artwork from? </h2>
+
+    <p class="description">
+        Explore the numbers of Mapped Artwork in Queensland Art Gallery by State and Territory
+    </p>
+
+    <div class="chart-card">
+        <h3>Mapped Artwork Records by State and Territory</h3>
+
+        <div id="choropleth_map">
+            <p>Loading Australian map...</p>
+        </div>
+
+        <p class="source-note">
+            Counts reflect mapped records in the selected QAGOMA
+            dataset, not all artworks held in each state or territory.
+        </p>
+    </div>
+</section>
+
+
+<!-- 03: When / Streamgraph Map             -->
+        <section class="story-section">
+            <p class="section-number">03 / WHEN</p>
+            <h2>When Did QAGOMA Collection Grew?</h2>
+            <p class="description">
+                Explore changes in artwork acquisitions across three
+                departments from 1934 to 2024. The flowing areas show
+                how each department's contribution changes over time.
+                Hover over the chart to inspect individual years.
+            </p>
+
+            <div class="chart-card">
+        
+                <p class="panel-description">
+                    Each coloured layer represents an art department.
+                    Layer thickness indicates the number of acquisition
+                    records.
+                </p>
+
+                <div class="streamgraph-controls">
+                    <p class="control-label">HIGHLIGHT A DEPARTMENT</p>
+
+                    <div class="department-buttons">
+                        <button
+                            type="button"
+                            class="department-btn active"
+                            data-department="All"
+                            aria-pressed="true">
+                            Show all
+                        </button>
+
+                        <button
+                            type="button"
+                            class="department-btn"
+                            data-department="Australian Art"
+                            aria-pressed="false">
+                            Australian Art
+                        </button>
+
+                        <button
+                            type="button"
+                            class="department-btn"
+                            data-department="Contemporary Australian Art"
+                            aria-pressed="false">
+                            Contemporary Australian Art
+                        </button>
+
+                        <button
+                            type="button"
+                            class="department-btn"
+                            data-department="Indigenous Australian Art"
+                            aria-pressed="false">
+                            Indigenous Australian Art
+                        </button>
+                    </div>
+
+                    <p id="streamgraph-selection" aria-live="polite">
+                        Showing all departments
+                    </p>
+                </div>
+
+                <div id="streamgraph">
+                    <p>Loading acquisition streamgraph...</p>
+                </div>
+
+                <p class="source-note">
+                    Note: Acquisition counts represent records in the
+                    available dataset. Zero counts indicate no records
+                    for that department and year in this prepared dataset.
+                </p>
+            </div>
+        </section>
+ 
+        <!-- CHART 4: ART FORMS OVER TIME -->
+        <section class="story-section">
+            <p class="section-number">04 / WHEN</p>
+            <h2>When Did Different Art Forms Rises to Prominence</h2>
+            <p class="description">
+                Trace the changes in the representation of painting , printing , photographs , sculptures and other art forms across creation decades. Discover when different forms peaked and how their share of the QAGOMA collection has shifted over time.
+            </p>
+
+            <div class="chart-card">
+                <h3>Changing Forms of Australian Art</h3>
+                <p class="panel-description">
+                    Compare the relative share of paintings, prints,
+                    photographs and other categories over time.
+                    Hover over a point to inspect the underlying records.
+                </p>
+
+                <div id="art-forms-line-chart">
+                    <p>Loading art forms chart...</p>
+                </div>
+
+                <p class="source-note">
+                    Source: QAGOMA collection dataset.
+                    Percentages represent each category's share of
+                    records within a creation decade. Results describe
+                    the available collection records, not all Australian art.
+                </p>
+            </div>
+        </section>
+
+
+<div class="side-by-side">
+
+    <!-- SECTION 05: COLLECTION REPRESENTATION -->
+            <section class="story-section">
+            <p class="section-number">05 / COLLECTION REPRESENTATION</p>
+            <h2>How Australian Is QAGOMA's Collection?</h2>
+            <p class="description">
+                Explore the recorded country associations of creators
+                linked to artworks in the selected QAGOMA dataset.
+            </p>
+
+            <div class="chart-card">
+                <h3>Creator Country Association</h3>
+                <p class="panel-description">
+                    Compare artwork records associated with Australian,
+                    international, mixed and unclassified creator information.
+                </p>
+
+                <div id="creator-origin-donut">
+                    <p>Loading creator country chart...</p>
+                </div>
+
+                <p class="source-note">
+                    Source: QAGOMA artwork and artist datasets.
+                    Country association reflects recorded creator metadata,
+                    not necessarily citizenship or birthplace.
+                </p>
+            </div>
+        </section>
+
+    <!-- SECTION 06: ARTISTIC FORMS -->
+    <section class="story-section">
+            <p class="section-number">06 / ARTISTIC FORMS</p>
+            <h2>How Has the Composition of Art Forms Changed?</h2>
+            <p class="description">
+                Compare the percentage composition of physical artwork
+                categories across creation decades. Each bar represents
+                100% of the recorded artworks created during that decade.
+            </p>
+
+            <div class="chart-card">
+                <h3>Artwork Categories by Creation Decade</h3>
+                <p class="panel-description">
+                    Each coloured segment represents an artwork category.
+                    Hover over a segment to inspect its artwork count
+                    and percentage of the decade total.
+                </p>
+
+                <div id="art-form-stacked-bar">
+                    <p>Loading 100% stacked bar chart...</p>
+                </div>
+
+                <p class="source-note">
+                    Source: QAGOMA collection dataset.
+                    Percentages represent the composition of records
+                    within each creation decade. They describe the
+                    available dataset, not all Australian art.
+                </p>
+            </section>
+            </div>
+    
+<div class="side-by-side">
+
+            <section class="story-section">
+            <p class="section-number">07 / WH0 </p>
+            <h2>Who is represented in accordance to DAAO?</h2>
+            <p class="description">
+                Explore the gender composition of documented Australian artists
+                by the decade their careers began. Each bar represents 100% of
+                the recorded male and female artists for that decade.
+            </p>
+
+            <div class="chart-card">
+                <h3>Gender Representation by Career-Start Decade</h3>
+                <p class="panel-description">
+                    Compare the percentage of male and female artist biographies
+                    across decades. Hover over a segment to see the artist count
+                    and percentage.
+                </p>
+
+                <div id="gender-decade-chart">
+                    <p>Loading gender representation chart...</p>
+                </div>
+
+                <p class="source-note">
+                    Source: Design and Art Australia Online (DAAO), via the
+                    Australian Cultural Data Engine selected biography dataset.
+                    Percentages are calculated among records classified as
+                    male or female. Biographies without a recorded career-start
+                    decade are excluded. These figures describe the selected
+                    biographies, not all Australian artists.
+                </p>
+            </div>
+        </section>
+
+
+    <!-- SECTION 08: ARTISTIC FORMS -->
+    <section class="story-section">
+            <p class="section-number">08 / WHO </p>
+            <h2>Who is Represented in the QAGOMA Dataset </h2>
+            <p class="description">
+                Explore which credited artists appear most frequently
+                in the QAGOMA collection dataset.
+            </p>
+
+            <div class="chart-card">
+                <h3>Top QAGOMA Representatives in terms of distinct records</h3>
+                <p class="panel-description">
+                    Artists are ranked by the number of distinct accession
+                    numbers associated with their credited records.
+                    Hover over a bar to inspect the count.
+                </p>
+
+                <div id="top-artists-chart">
+                    <p>Loading top artists chart...</p>
+                </div>
+
+                <p class="source-note">
+                    Source: QAGOMA collection dataset.
+                    Counts represent distinct accession numbers in the
+                    prepared dataset, not each artist's complete body of work.
+                    Unknown creator records are excluded. Some credited records
+                    may represent collaborations or multiple contributors.
+                </p>
+            </div>
+        </section>
+        </div>
+
+<!-- ACT 2: THE COLLECTION -->
+<section class="story-section" id="act-two">
+
+    <div class="section-heading">
+        <p class="section-number">ACT 2 / Melbourne Public Art /p>
+        <h2>But... What about our home city? </h2>
+        <p class="description">
+            Art is not only collected , classified and preserved. In fact , it also exists
+            in the streets, squares and public spaces that we encounter every day.
+        </p>
+    </div>
+<section>
+<!-- WAFFLE CHART: MELBOURNE PUBLIC ART -->
+<section class="story-section" id="public-art-waffle-section">
+
+    <p class="section-number">09 / PUBLIC ART</p>
+
+    <h2>What Makes Up Melbourne's Public Art Register?</h2>
+
+    <p class="description">
+        Explore how recorded public artworks are divided between
+        art, monuments and fountains.
+    </p>
+
+    <div class="chart-card">
+
+        <div class="public-art-summary-layout">
+
+            <!-- LEFT: WAFFLE CHART -->
+            <div class="public-art-waffle">
+                <div id="publicArtWaffleChart">
+                    <p>Loading waffle chart...</p>
+                </div>
+            </div>
+
+            <!-- RIGHT: SUMMARY PANEL -->
+            <aside class="public-art-summary">
+
+                <p class="summary-eyebrow">AT A GLANCE</p>
+
+                <h3>Melbourne's Public Art</h3>
+
+                <p class="summary-description">
+                    A breakdown of recorded public artworks by asset type.
+                </p>
+
+                <div class="summary-stat">
+                    <span class="summary-dot art-dot"></span>
+                    <div>
+                        <p class="summary-label">Art</p>
+                        <p class="summary-value">59.5%</p>
+                        <p class="summary-count">97 records</p>
+                    </div>
+                </div>
+
+                <div class="summary-stat">
+                    <span class="summary-dot monument-dot"></span>
+                    <div>
+                        <p class="summary-label">Monuments</p>
+                        <p class="summary-value">28.8%</p>
+                        <p class="summary-count">47 records</p>
+                    </div>
+                </div>
+
+                <div class="summary-stat">
+                    <span class="summary-dot fountain-dot"></span>
+                    <div>
+                        <p class="summary-label">Fountains</p>
+                        <p class="summary-value">11.7%</p>
+                        <p class="summary-count">19 records</p>
+                    </div>
+                </div>
+
+                <p class="summary-insight">
+                    Art represents the largest category in this dataset,
+                    accounting for approximately three-fifths of recorded
+                    entries.
+                </p>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+    <section class="story-section">
+            <p class="section-number">04 / WHEN</p>
+            <h2>When Did Different Art Forms Rises to Prominence</h2>
+            <p class="description">
+                Trace the changes in the representation of painting , printing , photographs , sculptures and other art forms across creation decades. Discover when different forms peaked and how their share of the QAGOMA collection has shifted over time.
+            </p>
+
+            <div
+                id="melbournePublicArtMap"
+                style="height: 550px; width: 100%;">
+            </div>
+
+            <div class="map-legend">
+                <span><i style="background:#3777C8"></i> Art</span>
+                <span><i style="background:#E88BB5"></i> Monument</span>
+                <span><i style="background:#E3A43B"></i> Fountain</span>
+            </div>
+        </section>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p>Data Visualisation Project</p>
+        <p>Student Name: Zijian Leow</p>
+        <p>Student ID: 34172890</p>
+        <p>Data Source : http://qagoma.qld.gov.au ( Queensland Art Gallery | Gallery of Modern Art )
+        <p>Data Source : Design & Art Australia Online (DAAO) </p>
+        <p>Data Source : Data.Melbourne.Vic.gov.Au City Of Melbourne</p>
+        <p>Map : Derived Map Geojson from Australian Bureau of Statistics (ABS)  </p>
+
+        </p>
+    </footer>
+
+
+
+
+
+<!-- Chart libraries: load only once -->
+<script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<!-- Melbourne public-art scripts -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../chart_javascript/melbourne_map.js"></script>
+<script src="../chart_javascript/waffle_chart.js"></script>
+
+<!-- Individual chart scripts -->
+<script src="../chart_javascript/charts/heatmap.js"></script>
+<script src="../chart_javascript/charts/chloropeth_map.js"></script>
+<script src="../chart_javascript/charts/streamgraph.js"></script>
+<script src="../chart_javascript/charts/art_forms.js"></script>
+<script src="../chart_javascript/charts/waffle_chart.js"></script>
+<script src="../chart_javascript/charts/artist_work.js"></script>
+<script src="../chart_javascript/charts/composition_art_form_bar.js"></script>
+<script src="../chart_javascript/charts/top_artists.js"></script>
+<script src="../chart_javascript/charts/donutchart.js"></script>
+<script src="../chart_javascript/charts/gender_pyramid.js"></script>
+<script src="../chart_javascript/charts/melbourne_interactive.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exploring Australian Art</title>
+
+    <!-- Vega-Lite libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css_file/style.css">
+    <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-content">
+            <p class="eyebrow">DATA VISUALISATION PROJECT</p>
+
+            <h1>Exploring Australian Art</h1>
+
+            <p class="header-description">
+                Discover how Australian artworks are distributed
+                across states, art departments and time.
+            </p>
+        </div>
+    </header>
+
+    <main class="page-content">
+
+        <!-- INTRODUCTION -->
+        <section class="intro-section">
+            <p class="section-number">INTRODUCTION</p>
+
+            <h2>Understanding Australia's Art Collection</h2>
+
+            <p class="description">
+                Australian art reflects the country's diverse cultural
+                identity, history and creative expression. This
+                visualisation explores the distribution of artwork
+                records across Australian states and territories,
+                compares different art departments, and examines
+                patterns within the available dataset.
+            </p>
+        </section>
+
+        <!-- CHART 1: HEATMAP -->
+        <section class="story-section">
+
+            <p class="section-number">01 / GEOGRAPHY</p>
+
+            <h2>Where Does the Art Come From?</h2>
+
+            <p class="description">
+                Explore how mapped artwork records vary between
+                Australian states and territories. Hover over a
+                cell to examine its artwork count and art department.
+            </p>
+
+            <div class="chart-card">
+
+                <div class="heatmap-layout">
+
+                    <!-- LEFT: HEATMAP -->
+                    <div class="heatmap-chart">
+
+                        <h3>Artwork Distribution</h3>
+
+                        <p class="panel-description">
+                            Compare artwork counts across states
+                            and art departments.
+                        </p>
+
+                        <div id="heatmap">
+                            <p>Loading heatmap...</p>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT: DETAILS PANEL -->
+                    <aside class="heatmap-details">
+
+                        <div class="details-heading">
+
+                            <p class="details-label">
+                                ARTWORK DETAILS
+                            </p>
+
+                            <h3 id="detail-heading">
+                                Explore the collection
+                            </h3>
+
+                            <p class="details-hint">
+                                Hover over a heatmap cell to see
+                                its details here.
+                            </p>
+
+                        </div>
+
+                        <div class="detail-item">
+                            <span>STATE / TERRITORY</span>
+                            <strong id="detail-state">—</strong>
+                        </div>
+
+                        <div class="detail-item">
+                            <span>ART DEPARTMENT</span>
+                            <strong id="detail-department">—</strong>
+                        </div>
+
+                        <div class="detail-count">
+                            <span>MAPPED ARTWORK RECORDS</span>
+
+                            <strong id="detail-count">—</strong>
+
+                            <p class="count-caption">
+                                Records in the selected category.
+                            </p>
+                        </div>
+
+                        <div class="heatmap-legend">
+
+                            <span class="legend-title">
+                                ARTWORK COUNT SCALE
+                            </span>
+
+                            <div
+                                class="legend-gradient"
+                                role="img"
+                                aria-label="Colour scale from fewer to more artwork records">
+                            </div>
+
+                            <div class="legend-labels">
+                                <span>Fewer records</span>
+                                <span>More records</span>
+                            </div>
+
+                            <p class="legend-note">
+                                Darker shades indicate higher counts.
+                                The colour scale is logarithmic.
+                            </p>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CHART 2: ACQUISITION STREAMGRAPH -->
+        <section class="story-section">
+
+            <p class="section-number">02 / COLLECTION HISTORY</p>
+
+            <h2>How Has the Collection Evolved Over Time?</h2>
+
+            <p class="description">
+                Explore changes in artwork acquisitions across three
+                departments from 1934 to 2024. The flowing areas show
+                how each department's contribution changes over time.
+                Hover over the chart to inspect individual years.
+            </p>
+
+            <div class="chart-card">
+
+                <h3>Evolution of Artwork Acquisitions</h3>
+
+                <p class="panel-description">
+                    Each coloured layer represents an art department.
+                    Layer thickness indicates the number of acquisition
+                    records.
+                </p>
+
+                <!-- STREAMGRAPH CONTROLS -->
+                <div class="streamgraph-controls">
+
+                    <p class="control-label">
+                        HIGHLIGHT A DEPARTMENT
+                    </p>
+
+                    <div class="department-buttons">
+
+                        <button
+                            type="button"
+                            class="department-btn active"
+                            data-department="All"
+                            aria-pressed="true">
+                            Show all
+                        </button>
+
+                        <button
+                            type="button"
+                            class="department-btn"
+                            data-department="Australian Art"
+                            aria-pressed="false">
+                            Australian Art
+                        </button>
+
+                        <button
+                            type="button"
+                            class="department-btn"
+                            data-department="Contemporary Australian Art"
+                            aria-pressed="false">
+                            Contemporary Australian Art
+                        </button>
+
+                        <button
+                            type="button"
+                            class="department-btn"
+                            data-department="Indigenous Australian Art"
+                            aria-pressed="false">
+                            Indigenous Australian Art
+                        </button>
+
+                    </div>
+
+                    <p id="streamgraph-selection" aria-live="polite">
+                        Showing all departments
+                    </p>
+
+                </div>
+
+                <!-- STREAMGRAPH: KEEP THIS CONTAINER ONLY ONCE -->
+                <div id="streamgraph">
+                    <p>Loading acquisition streamgraph...</p>
+                </div>
+
+                <p class="source-note">
+                    Note: Acquisition counts represent records in the
+                    available dataset. Zero counts indicate no records
+                    for that department and year in this prepared dataset.
+                </p>
+
+            </div>
+
+        </section>
+        <!-- CHART: EVOLUTION OF ART FORMS -->
+<!-- CHART: ART FORMS OVER TIME -->
+    <section class="story-section">
+
+        <p class="section-number">04 / ARTISTIC FORMS</p>
+
+        <h2>How Have Art Forms Changed Over Time?</h2>
+
+        <p class="description">
+            Explore how the representation of different art forms
+            changes across creation decades. Each coloured line
+            represents a physical artwork category.
+        </p>
+
+        <div class="chart-card">
+
+            <h3>Changing Forms of Australian Art</h3>
+
+            <p class="panel-description">
+                Compare the relative share of paintings, prints,
+                photographs and other categories over time.
+                Hover over a point to inspect the underlying records.
+            </p>
+
+            <div id="art-forms-line-chart">
+                <p>Loading art forms chart...</p>
+            </div>
+
+            <p class="source-note">
+                Source: QAGOMA collection dataset.
+                Percentages represent each category's share of
+                records within a creation decade. Results describe
+                the available collection records, not all Australian art.
+            </p>
+
+        </div>
+
+    </section>
+    <!-- CHART 5: CREATOR COUNTRY ASSOCIATION -->
+<section class="story-section">
+
+    <p class="section-number">05 / COLLECTION REPRESENTATION</p>
+
+    <h2>How Australian Is QAGOMA's Collection?</h2>
+
+    <p class="description">
+        Explore the recorded country associations of creators
+        linked to artworks in the selected QAGOMA dataset.
+    </p>
+
+    <div class="chart-card">
+
+        <h3>Creator Country Association</h3>
+
+        <p class="panel-description">
+            Compare artwork records associated with Australian,
+            international, mixed and unclassified creator information.
+        </p>
+
+        <!-- IMPORTANT: This ID must match chart.js exactly -->
+        <div id="creator-origin-donut">
+            <p>Loading creator country chart...</p>
+        </div>
+
+        <p class="source-note">
+            Source: QAGOMA artwork and artist datasets.
+            Country association reflects recorded creator metadata,
+            not necessarily citizenship or birthplace.
+        </p>
+
+    </div>
+
+</section>
+<!-- CHART 2: AUSTRALIAN CHOROPLETH MAP -->
+<section class="story-section">
+
+    <p class="section-number">02 / GEOGRAPHY</p>
+
+    <h2>How Are Mapped Artworks Distributed Across Australia?</h2>
+
+    <p class="description">
+        Explore differences in mapped artwork records across
+        Australian states and territories. Hover over a state
+        to view its recorded total.
+    </p>
+
+    <div class="chart-card">
+
+        <h3>Mapped Artwork Records by State and Territory</h3>
+
+        <p class="panel-description">
+            Darker shading indicates a higher number of mapped
+            artwork records in the selected QAGOMA dataset.
+        </p>
+
+        <div id="choropleth_map">
+            <p>Loading Australian map...</p>
+        </div>
+
+        <p class="source-note">
+            Source: QAGOMA collection dataset and Australian state
+            boundary GeoJSON. Counts reflect mapped records in this
+            dataset only. They should not be interpreted as the total
+            number of artworks held across each state or territory.
+        </p>
+
+    </div>
+
+<!-- CHART: ART FORM COMPOSITION BY DECADE -->
+<section class="story-section">
+
+    <p class="section-number">06 / ARTISTIC FORMS</p>
+
+    <h2>How Has the Composition of Art Forms Changed?</h2>
+
+    <p class="description">
+        Compare the percentage composition of physical artwork
+        categories across creation decades. Each bar represents
+        100% of the recorded artworks created during that decade.
+    </p>
+
+    <div class="chart-card">
+
+        <h3>Artwork Categories by Creation Decade</h3>
+
+        <p class="panel-description">
+            Each coloured segment represents an artwork category.
+            Hover over a segment to inspect its artwork count
+            and percentage of the decade total.
+        </p>
+
+        <div id="art-form-stacked-bar">
+            <p>Loading 100% stacked bar chart...</p>
+        </div>
+
+        <p class="source-note">
+            Source: QAGOMA collection dataset.
+            Percentages represent the composition of records
+            within each creation decade. They describe the
+            available dataset, not all Australian art.
+        </p>
+
+    </div>
+
+</section>
+<!-- CHART: GENDER REPRESENTATION BY DECADE -->
+<section class="story-section">
+    <p class="section-number">07 / ARTIST REPRESENTATION</p>
+
+    <h2>How Has Gender Representation Changed Over Time?</h2>
+
+    <p class="description">
+        Explore the gender composition of documented Australian artists
+        by the decade their careers began. Each bar represents 100% of
+        the recorded male and female artists for that decade.
+    </p>
+
+    <div class="chart-card">
+        <h3>Gender Representation by Career-Start Decade</h3>
+
+        <p class="panel-description">
+            Compare the percentage of male and female artist biographies
+            across decades. Hover over a segment to see the artist count
+            and percentage.
+        </p>
+
+        <div id="gender-decade-chart">
+            <p>Loading gender representation chart...</p>
+        </div>
+
+        <p class="source-note">
+            Source: Design and Art Australia Online (DAAO), via the
+            Australian Cultural Data Engine selected biography dataset.
+            Percentages are calculated among records classified as
+            male or female. Biographies without a recorded career-start
+            decade are excluded. These figures describe the selected
+            biographies, not all Australian artists.
+        </p>
+    </div>
+</section>
+<!-- CHART: TOP ARTISTS BY NUMBER OF WORKS -->
+<section class="story-section">
+
+    <p class="section-number">08 / ARTIST REPRESENTATION</p>
+
+    <h2>Which Artists Have the Most Works in the Collection?</h2>
+
+    <p class="description">
+        Explore which credited artists appear most frequently
+        in the QAGOMA collection dataset.
+    </p>
+
+    <div class="chart-card">
+
+        <h3>Top 15 Artists by Recorded Works</h3>
+
+        <p class="panel-description">
+            Artists are ranked by the number of distinct accession
+            numbers associated with their credited records.
+            Hover over a bar to inspect the count.
+        </p>
+
+        <div id="top-artists-chart">
+            <p>Loading top artists chart...</p>
+        </div>
+
+        <p class="source-note">
+            Source: QAGOMA collection dataset.
+            Counts represent distinct accession numbers in the
+            prepared dataset, not each artist's complete body of work.
+            Unknown creator records are excluded. Some credited records
+            may represent collaborations or multiple contributors.
+        </p>
+
+    </div>
+
+</section>
+<section class="chart-section">
+  <h2>Where Is Melbourne's Public Art?</h2>
+  <p>Explore the locations of public artworks, monuments and fountains across the City of Melbourne.</p>
+
+  <div
+    id="melbournePublicArtMap"
+    style="height: 550px; width: 100%;"
+  ></div>
+</section>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="../chart_javascript/chart.js"></script>
+
+<div class="map-legend">
+  <span><i style="background:#3777C8"></i> Art</span>
+  <span><i style="background:#E88BB5"></i> Monument</span>
+  <span><i style="background:#E3A43B"></i> Fountain</span>
+</div>
+<section class="chart-section">
+<section class="chart-section">
+<!-- WAFFLE CHART -->
+<section class="story-section" id="public-art-waffle-section">
+    <p class="section-number">09 / PUBLIC ART</p>
+
+    <h2>What Makes Up Melbourne's Public Art Register?</h2>
+
+    <p class="description">
+        Explore how recorded public artworks are divided between
+        art, monuments and fountains.
+    </p>
+
+    <div class="chart-card">
+        <div id="publicArtWaffleChart">
+            <p>Loading waffle chart...</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="conclusion-section">
+
+            <p class="section-number">CONCLUSION</p>
+
+            <h2>What Can We Learn?</h2>
+
+            <p class="description">
+                Comparing geographical distribution, art departments
+                and temporal patterns provides different perspectives
+                on Australia's art collection. These visualisations
+                can highlight differences in the representation of
+                artwork records across the country.
+            </p>
+
+            <p class="source-note">
+                <strong>Data source:</strong>
+                Add the original dataset name, publisher and source URL.
+            </p>
+
+        </section>
+
+    </main>
+
+    
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p>Data Visualisation Project</p>
+        <p>Student Name: Zijian Leow</p>
+        <p>Student ID: 34172890</p>
+    </footer>
+
+    <!-- Load JavaScript after the HTML elements -->
+    <script src="../chart_javascript/chart.js"></script>
+    <script src="../chart_javascript/charts/medium_composition.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<script src="../chart_javascript/chart.js"></script>
+<script src="../chart_javascript/waffle_chart.js"></script>
+
+</body>
+</html>
+
